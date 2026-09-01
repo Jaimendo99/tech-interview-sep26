@@ -25,9 +25,10 @@ public class HttpItemClientImp implements HttpItemClient {
 
     @Override
     public List<MobItem> getItems() throws IOException, InterruptedException {
+        String url = baseUrl + "api/mobs";
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create(baseUrl))
+                .uri(URI.create(url))
                 .build();
 
         HttpResponse<String> response =
