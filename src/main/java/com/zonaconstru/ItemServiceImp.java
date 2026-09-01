@@ -8,6 +8,7 @@ import com.zonaconstru.utils.Result;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ItemServiceImp implements ItemService {
     private final MobItemRepository itemRepository;
     private final MobNotifier notifier;
@@ -36,15 +37,9 @@ public class ItemServiceImp implements ItemService {
         return switch (sorter) {
             case NAME_AS -> {
                 List<MobItem> sortedItems = new ArrayList<>(items);
-                for (int i = 0; i < sortedItems.size(); i++) {
-                    for (int j = i + 1; j < sortedItems.size(); j++) {
-                        if (sortedItems.get(i).name().compareTo(sortedItems.get(j).name()) > 0) {
-                            MobItem item = sortedItems.get(i);
-                            sortedItems.set(i, sortedItems.get(j));
-                            sortedItems.set(j, item);
-                        }
-                    }
-                }
+
+                //TODO: implement sorting
+
                 yield sortedItems;
             }
             case NAME_DES -> items;
@@ -83,7 +78,8 @@ public class ItemServiceImp implements ItemService {
 
     @Override
     public NotificationResponse notifyItem(List<MobItem> items) {
-        String webhook = "http://localhost:3000/api/interviews/3c076cf6ccba/mobs";
+        //TODO: add webhook to send notification
+        String webhook = "";
         try{
             notifier.notify(items, webhook);
             return new NotificationResponse("Webhook sent succesfuly", 200);
